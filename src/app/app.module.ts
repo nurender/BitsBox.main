@@ -1,47 +1,56 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
+import { FormsModule } from "@angular/forms"
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './footer/footer.component';
-import { ViewPageComponent } from './view-page/view-page.component';
-import { CompaniPageComponent } from './compani-page/compani-page.component';
-import { SingleCompaniPageComponent } from './single-compani-page/single-compani-page.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ALERTComponent } from './alert/alert.component';
+import { ChatComponent } from './chat/chat.component';
+import { HttpClientModule } from '@angular/common/http'
 
 
 let routes : Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'home',
     component: HomeComponent,
-    // children:[
-    //   {
-    //     path: 'view-page',
-    //     redirectTo:'view-page',
-    //     pathMatch:'full'
-    //   }
-    // ]
+    children:[
+    {
+      path: 'chat',
+      component: ChatComponent,
+    },
+      {
+        path: 'alert',
+        component: ALERTComponent,
+      }
+  ]
   },
   {
-    path: 'view-page',
-    component: ViewPageComponent 
+    path: 'login',
+    component: LoginComponent,
   },
+  // {
+  //   path: 'chat',
+  //   component: ChatComponent,
+  // },
   {
-    path: 'compani-page',
-    component: CompaniPageComponent
+    path: 'signup',
+    component: SignupComponent,
   },
-  {
-    path : 'single-compani-page',
-    component: SingleCompaniPageComponent
-  },
+  // {
+  //   path: 'alert',
+  //   component: ALERTComponent,
+  // },
   {
     path : '**',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   }
   
@@ -50,14 +59,17 @@ let routes : Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    FooterComponent,
-    ViewPageComponent,
-    CompaniPageComponent,
-    SingleCompaniPageComponent
+    LoginComponent,
+    SignupComponent,
+    ALERTComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

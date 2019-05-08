@@ -1,0 +1,65 @@
+
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Login</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form #myform = "ngForm" (ngSubmit) = "onSubmit(myform.value)">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="username" required minlength="3" maxlength="40" ngModel #username = "ngModel" class="form-control" placeholder="username">
+          </div>
+          <div class="alert alert-danger" *ngIf = "!username.valid && username.touched">
+            <div *ngIf = "username.errors.required">
+              Pleasev Fill Last Name ...
+            </div>
+            <div *ngIf = "username.errors.minlength"> 
+              Pleasev minlength ...
+            </div>
+        </div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password " name="password" required minlength="3" maxlength="40" ngModel #password = "ngModel" class="form-control" placeholder="password">
+          </div>
+          <div class="alert alert-danger" *ngIf = "!password.valid && password.touched">
+            <div *ngIf = "password.errors.required">
+              Pleasev Fill Last Name ...
+            </div>
+            <div *ngIf = "password.errors.minlength"> 
+              Pleasev minlength ...
+            </div>
+        </div>
+
+					<div class="row align-items-center remember">
+						<input type="checkbox" name="checkbox"  required  ngModel #checkbox = "ngModel">Remember Me
+          </div>
+          <div class="alert alert-danger" *ngIf = "!checkbox.valid && checkbox.touched">
+            <div *ngIf = "checkbox.errors.required">
+              Pleasev checkbox required ...
+            </div>
+            </div>
+					<div class="form-group">
+						<input type="submit" (click) = "myfun(myform.value)" [disabled] = "myform.invalid"  value="Login" class="btn float-right login_btn">
+					</div>
+					
+				</form>
+			
+		</div>
+		<div class="card-footer">
+			<div class="d-flex justify-content-center links">
+				Don't have an account?<a href="signup">Sign Up</a> 
+			</div>
+	</div>
+	</div>
+</div>
